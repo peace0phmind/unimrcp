@@ -16,3 +16,6 @@ RUN tar -zxf unimrcp-deps-${UNIMRCP_VERSION}.tar.gz \
     && cat build-dep-libs.sh | sed 's/sudo make install/make install/' > build.sh && chmod +x build.sh \
     && ./build.sh -s)
 
+RUN git clone --single-branch --branch fox https://github.com/peace0phmind/unimrcp.git
+
+RUN (cd unimrcp && ./bootstrap && ./configure && make && make install)
