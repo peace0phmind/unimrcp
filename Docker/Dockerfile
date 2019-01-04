@@ -4,6 +4,7 @@ FROM centos:7
 
 LABEL maintainer="peace0phmind@gmail.com"
 
+ARG BUILD_VERSION=unknown
 ARG UNIMRCP_VERSION=1.6.0
 
 RUN yum group install -y "Development Tools"
@@ -18,4 +19,4 @@ RUN tar -zxf unimrcp-deps-${UNIMRCP_VERSION}.tar.gz \
 
 RUN git clone --single-branch --branch fox https://github.com/peace0phmind/unimrcp.git
 
-RUN (cd unimrcp && ./bootstrap && ./configure && make && make install)
+RUN (cd unimrcp && echo building ${BUILD_VERSION} && git pull && ./bootstrap && ./configure && make && make install)
